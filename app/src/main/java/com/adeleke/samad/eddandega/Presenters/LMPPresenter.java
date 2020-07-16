@@ -1,91 +1,58 @@
 package com.adeleke.samad.eddandega.Presenters;
 
-import android.util.Log;
-import android.widget.Toast;
-
 import com.adeleke.samad.eddandega.Contract.ContractClass;
 import com.adeleke.samad.eddandega.Contract.ContractInterface;
-import com.adeleke.samad.eddandega.MyDate;
-import com.adeleke.samad.eddandega.R;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.time.temporal.ChronoUnit;
 
-public class LMPPresenter implements ContractInterface.LMPPresenter{
+import static com.adeleke.samad.eddandega.Contract.ContractClass.DateType.LMP;
+
+public class LMPPresenter implements ContractInterface.LMPPresenter {
 
     private ContractInterface.LMPView lmpView;
+    private LocalDate lmp, edd;
+    private String ega;
+    private LocalDate today;
 
     public LMPPresenter(ContractInterface.LMPView lmpView) {
         this.lmpView = lmpView;
+        this.today = LocalDate.now();
     }
 
     @Override
-    public List<int[]> calculate(int selectedRadio, MyDate currentDate, MyDate selectedDate) {
-
-        MyDate EDD = new MyDate();
-        MyDate LMP = new MyDate();
-
-
-
-        if (selectedRadio == ContractClass.LMP_RADIO){
-            //User chose to calculate with LMP
-
-            LMP = selectedDate;
-
-            if (LMP.getRawDate()+280 > LMP.getYearLength()){
-
-                int rawDate=(LMP.getRawDate() + 280) - LMP.getYearLength();
-                int year=(LMP.getYear()+1);
-
-                EDD = new MyDate(rawDate,year);
-
-            }else if (LMP.getYearLength() >= (LMP.getRawDate()+280)){
-
-                int rawDate = LMP.getRawDate()+280;
-                int year = LMP.getYear();
-                EDD = new MyDate(rawDate,year);
-            }
-
-
-        }else{
-            //User chose to calculate with EDD
-
-            EDD = selectedDate;
-
-            if ( EDD.getRawDate() < 280){
-
-                int rawDate=ContractClass.YEAR_LENGTH - (280 - EDD.getRawDate());
-                int year=(currentDate.getYear()-1);
-                LMP = new MyDate(rawDate,year);
-
-            }else {
-                int rawDate=selectedDate.getRawDate()-280;
-                int year=currentDate.getYear();
-                LMP = new MyDate(rawDate,year);
-            }
-
-        }
-
-        int rawEGA;
-        if (currentDate.getYear() == LMP.getYear()) {
-            rawEGA = currentDate.getRawDate() - LMP.getRawDate();
+    public String[] calculate(ContractClass.DateType dateType, LocalDate datePicked) {
+        if (dateType == LMP) {
+            lmp = datePicked;
+            ega = calculateEGA(datePicked);
+            edd = calculateEDD(datePicked);
         } else {
-            rawEGA = (ContractClass.YEAR_LENGTH - LMP.getRawDate()) + currentDate.getRawDate();
+            lmp = calculateLMPfromEDD(datePicked);
+            ega = calculateEGA(lmp);
+            edd = datePicked;
         }
+        String fullLmp = "LMP -> " + lmp.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG));
+        String fullEDD = "EDD -> " + edd.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG));
 
-
-
-        int [] EGAarray = {rawEGA/7, (rawEGA - ((rawEGA/7) * 7)) };
-        int [] LMParray = LMP.getNormalDate();
-        int [] EDDarray = EDD.getNormalDate();
-
-
-
-        List<int [] > result = new ArrayList<int[]>();
-        result.add(LMParray);
-        result.add(EGAarray);
-        result.add(EDDarray);
-
-        return result;
+        return new String[]{fullLmp, ega, fullEDD};
     }
+
+    private LocalDate calculateLMPfromEDD(LocalDate datePicked) {
+        return datePicked.minusDays(280);
+    }
+
+    private LocalDate calculateEDD(LocalDate datePicked) {
+        return datePicked.plusDays(280);
+    }
+
+
+    private String calculateEGA(LocalDate datePicked) {
+        long totalDays = ChronoUnit.DAYS.between(datePicked, today);
+        int weeks = (int) totalDays / 7;
+        int days = (int) totalDays - (weeks * 7);
+        return Integer.toString(weeks) + "weeks " + Integer.toString(days) + "days";
+    }
+
 }
