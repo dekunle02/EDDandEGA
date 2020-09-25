@@ -1,210 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragments.LMPFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.adeleke.samad.eddandega.fluid.FluidViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".lmp.LMPFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_result"
+                style="@style/AppTheme.ResultTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:gravity="center"
+                android:paddingTop="16dp"
+                android:paddingBottom="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvResult"
+                style="@style/AppTheme.Cards"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_result">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="16dp"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
+
+                    <TextView
+                        android:id="@+id/maintenance"
+                        style="@style/AppTheme.FluidTextView"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="@string/default_maintenance"
+                        android:textColor="@color/colorPrimary" />
+
+                    <TextView
+                        android:id="@+id/deficit"
+                        style="@style/AppTheme.FluidTextView"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="5"
+                        android:text="@string/default_deficit"
+                        android:textColor="@color/colorSecondary" />
+
+                </LinearLayout>
 
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:elevation="@dimen/cardview_default_elevation"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.053">
+            </androidx.cardview.widget.CardView>
 
-            <GridLayout
+            <LinearLayout
                 android:id="@+id/gridLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="16dp"
-                android:columnCount="2"
-                android:rowCount="2"
+                android:orientation="vertical"
+                android:padding="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/cvResult">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_row="0"
-                    android:layout_column="0"
-                    android:layout_gravity="center"
-                    android:text="@string/default_weight"
-                    android:textSize="18sp"
-                    tools:layout_editor_absoluteX="50dp"
-                    tools:layout_editor_absoluteY="385dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_row="1"
-                    android:layout_column="0"
-                    android:layout_gravity="center"
-                    android:text="Dehydration: "
-                    android:textSize="18sp"
-                    tools:layout_editor_absoluteX="79dp"
-                    tools:layout_editor_absoluteY="128dp" />
-
-                <EditText
-                    android:id="@+id/et_weight"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_row="0"
-                    android:layout_column="1"
-                    android:layout_gravity="center"
-                    android:ems="10"
-                    android:inputType="numberDecimal"
-                    android:textAlignment="textStart"
-                    tools:layout_editor_absoluteX="181dp"
-                    tools:layout_editor_absoluteY="385dp" />
-
-                <Spinner
-                    android:id="@+id/spinner_dehydration_level"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_row="1"
-                    android:layout_column="1"
-                    android:layout_gravity="center"
-                    android:spinnerMode="dropdown"
-                    android:theme="@style/ThemeOverlay.AppCompat.Light" />
-
-            </GridLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="32dp"
-            android:padding="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView"
-            app:layout_constraintVertical_bias="0.027">
-
-            <GridLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="16dp"
-                android:columnCount="2"
-                android:padding="16dp"
-                android:rowCount="2">
-
-                <TextView
-                    android:id="@+id/maintenance"
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_row="0"
-                    android:layout_column="0"
-                    android:paddingEnd="16dp"
-                    android:text="@string/default_maintenance"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="20sp"
-                    tools:layout_editor_absoluteX="8dp"
-                    tools:layout_editor_absoluteY="488dp" />
+                    android:hint="@string/default_weight"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    >
 
-                <TextView
-                    android:id="@+id/deficit"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_weight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_row="0"
-                    android:layout_column="1"
-                    android:layout_gravity="center"
-                    android:paddingStart="16dp"
-                    android:text="@string/default_deficit"
-                    android:textAlignment="center"
-                    android:textColor="@color/dark2"
-                    android:textSize="20sp"
-                    tools:layout_editor_absoluteX="8dp"
-                    tools:layout_editor_absoluteY="323dp" />
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/tv_deficit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_row="1"
-                    android:layout_column="1"
-                    android:layout_gravity="center"
-                    android:text="0ml"
-                    android:textAlignment="center"
-                    android:textColor="@color/dark2"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    tools:layout_editor_absoluteX="8dp"
-                    tools:layout_editor_absoluteY="456dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/dehydration"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                    <com.google.android.material.slider.Slider
+                        android:id="@+id/dehydrationSlider"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:stepSize="1.0"
+                        />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-                <TextView
-                    android:id="@+id/tv_maintenance"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_row="1"
-                    android:layout_column="0"
-                    android:layout_gravity="center"
-                    android:text="0ml"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    tools:layout_editor_absoluteX="8dp"
-                    tools:layout_editor_absoluteY="273dp" />
+            </LinearLayout>
 
 
-            </GridLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:id="@+id/tv_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            style="@style/myTVs"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView2"
-            app:layout_constraintVertical_bias="0.141"
-            tools:layout_editor_absoluteX="33dp" />
-
-        <Button
-            android:id="@+id/button_fluid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
-            android:background="@drawable/my_button"
-            android:paddingStart="32dp"
-            android:paddingEnd="32dp"
-            android:textColor="@android:color/white"
-            android:text="@string/button_text"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="47dp"
-            android:layout_height="48dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/cardView2" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</FrameLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

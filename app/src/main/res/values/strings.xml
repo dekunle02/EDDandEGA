@@ -16,7 +16,7 @@
         <item>31</item>
     </integer-array>
 
-    <string name="title">Select the patient\'s LMP or EDD</string>
+    <string name="title">Calculate with: </string>
     <string name="lmp">LMP is </string>
     <string name="ega">EGA is </string>
     <string name="edd">EDD is </string>
@@ -25,42 +25,37 @@
     <string name="error_message">Date is either too close or too far from today. Answer may not be correct.</string>
     <string name="error_anthro">Don\'t forget to fill the open fields.</string>
 
-    <string-array name="monthNames">
-        <item>January</item>
-        <item>February</item>
-        <item>March</item>
-        <item>April</item>
-        <item>May</item>
-        <item>June</item>
-        <item>July</item>
-        <item>August</item>
-        <item>September</item>
-        <item>October</item>
-        <item>November</item>
-        <item>December</item>
-    </string-array>
 
 
-    <string name="LMP_string">LMP   </string>
-    <string name="EDD_string">EDD   </string>
+    <string name="LMP_string">LMP</string>
+    <string name="EDD_string">EDD</string>
+    <string name="EGA_string">EGA</string>
+
 
     <string name="error_message_fluid">Please kindly enter the weight. Thank you.</string>
     <string name="adult_weight_message">Maybe we should use the adult maintenance</string>
 
     <string name="default_maintenance">Maintenance</string>
     <string name="default_deficit">Fluid deficit</string>
-    <string name="default_weight">weight (kg)</string>
+    <string name="default_weight">Child\'s weight(kg)</string>
 
     <string name="default_info">...</string>
 
-    <string name="mild_dehydration">Mild dehydration</string>
-    <string name="moderate_dehydration">Moderate dehydration</string>
-    <string name="severe_dehydration">Severe dehydration</string>
+    <string name="dehydration">dehydration</string>
+    <string name="no_dehydration">none</string>
+    <string name="mild_dehydration">mild</string>
+    <string name="moderate_dehydration">moderate</string>
+    <string name="severe_dehydration">severe</string>
 
     <string name="button_text">Calculate</string>
     <string name="anthropometry_title">Select the Child\'s age bracket</string>
+    <string name="birth_weight">birth weight(kg)</string>
+    <string name="age">Age: </string>
 
-
+    <string name="appr_weight">"Approximate Weight is\n"</string>
+    <string name="night_mode_on">Night Mode ON</string>
+    <string name="night_mode_off">Night Mode OFF</string>
+    <string name="system_default">System Default</string>
 
 
 </resources>

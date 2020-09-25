@@ -1,30 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2196f3</color>
-    <color name="colorPrimaryDark">#0069c0</color>
-    <color name="colorAccent">#2196f3</color>
+    <color name="colorPrimary">#354E8E</color>
+    <color name="colorPrimaryLight">#677abf</color>
+    <color name="colorPrimaryDark">#002760</color>
+    <color name="colorSecondary">#c2185b</color>
+    <color name="colorSecondaryLight">#fa5788</color>
+    <color name="colorSecondaryDark">#8c0032</color>
 
-
-
-
-    <color name="bluePrimary">#673ab7</color>
-    <color name="blueDark">#320b86</color>
-    <color name="blueLight">#9a67ea</color>
-    <color name="pinkSecondary">#fbc02d</color>
-
-    <color name="darkTaskbar">#121212</color>
-
-
-
-    <color name="light1">#f5eee6</color>
-    <color name="light2">#f3d7ca</color>
-    <color name="dark1">#e6a4b4</color>
-    <color name="dark2">#c86b85</color>
-    <color name="correctAnswer"> #688A66</color>
-
-    <color name="expGrey">#2b292d</color>
-    <color name="black">#070a11</color>
-    <color name="expTeal">#2e4750</color>
-
-
+    <color name="textColorPrimary">#191919</color>
+    <color name="textColorSecondary">#ffffff</color>
 </resources>

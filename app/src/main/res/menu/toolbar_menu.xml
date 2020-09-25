@@ -2,11 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<item
-    android:title="Night"
-    android:id="@+id/toggle_night"
-    android:icon="@drawable/ic_nights"
-    app:showAsAction="always"
-    />
+    <item
+        android:id="@+id/night_on"
+        android:icon="@drawable/ic_nights"
+        android:title="@string/night_mode_on"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/night_off"
+        android:icon="@drawable/ic_day"
+        android:title="@string/night_mode_off"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/night_default"
+        android:icon="@drawable/ic_day"
+        android:title="@string/system_default"
+        app:showAsAction="never" />
+
 
 </menu>
